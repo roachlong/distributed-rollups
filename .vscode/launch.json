@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+              "DATABASE_URL": "postgresql://root@localhost:26257/defaultdb?sslmode=disable"
+            }
+        },
+        {
+            "name": "Debug Analytics",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/debug_analytics.py",
+            "console": "integratedTerminal",
+            "env": {
+              "DATABASE_URL": "postgresql://root@localhost:26257/schedules?sslmode=disable"
+            }
+        }
+    ]
+}
