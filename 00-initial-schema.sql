@@ -2,9 +2,6 @@
 CREATE DATABASE IF NOT EXISTS schedules;
 USE schedules;
 
--- Enable the UUID extension (if not already enabled)
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 -- Static tables (rarely change)
 CREATE TABLE airlines (
   airline_id   UUID PRIMARY KEY DEFAULT gen_random_uuid(),
