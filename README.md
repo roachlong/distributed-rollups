@@ -40,6 +40,14 @@ cockroach sql --url "$conn_str" -f 02-create-flight-snapshot.sql
 cockroach sql --url "$conn_str" -f 03-create-analytics-function.sql
 ```
 
+We also want to alter the MVCC window for our materialized view to a value less than the refresh interval.
+```
+cockroach sql --url "$conn_str" -e """
+ALTER TABLE flight_snapshot CONFIGURE ZONE USING gc.ttlseconds = 30;
+SHOW ZONE CONFIGURATION FROM TABLE flight_snapshot;
+"""
+```
+
 Finally, before we run the workload tests we'll setup a cron job to refresh our materialized view every minute by adding a similar line below to ```crontab -e```.
 ```
 * * * * * /opt/homebrew/bin/cockroach sql --url "postgresql://localhost:26257/schedules?sslmode=disable" -e="REFRESH MATERIALIZED VIEW flight_snapshot;"
